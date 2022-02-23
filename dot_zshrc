@@ -15,7 +15,7 @@ case ${OSTYPE} in
         source ~/.zshrc.linux
         ;;
 esac
-
+#eval "$(starship init zsh)"
 
 ########## source search by peco ##########
 bindkey '^]' peco-src
@@ -79,6 +79,19 @@ else
   echo "dotfiles-private doesn't exists in home directory"
 fi
 
+########## console ##########
+export LANG=ja_JP.UTF-8
+setopt share_history
+setopt histignorealldups
+
+# below settings may be supported by zpreztorc automatically
+setopt correct
+
+autoload -Uz colors
+colors
+
+autoload -Uz compinit
+compinit
 
 ########## coding ##########
 # add for vim
@@ -118,7 +131,7 @@ alias gco='git checkout'
 alias gf='git fetch'
 alias gc='git commit'
 
+
 ##### top #####
 alias mem='top -o rsize'
 alias cpu='top -o cpu'
-
