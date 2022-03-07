@@ -69,7 +69,7 @@ function peco-cdr () {
     fi
 }
 zle -N peco-cdr
-bindkey '^E' peco-cdr
+bindkey '^F' peco-cdr
 
 
 ########## load private settings ##########
