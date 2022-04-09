@@ -111,6 +111,9 @@ export PATH=/usr/local/bin:$PATH
 # Add for python
 export PATH=/usr/local/opt/python@3.9/libexec/bin:$PATH
 
+# Add for nim
+export PATH=/Users/amaretto/.nimble/bin:$PATH
+
 
 ########## kubernetes ##########
 # kubectl
