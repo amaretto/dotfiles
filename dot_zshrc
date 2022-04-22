@@ -113,6 +113,9 @@ export PATH=/usr/local/opt/python@3.9/libexec/bin:$PATH
 # Add for nim
 export PATH=/Users/amaretto/.nimble/bin:$PATH
 
+# Add for groovy
+export GROOVY_HOME=/opt/homebrew/opt/groovy/libexec
+
 
 ########## kubernetes ##########
 # kubectl

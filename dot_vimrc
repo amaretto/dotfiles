@@ -241,6 +241,9 @@ let g:rustfmt_autosave = 1
 "      \ })
 "endif
 
+"### Groovy ###
+autocmd FileType groovy   setlocal sw=4 sts=4 ts=4 et
+
 "########################"
 "#         IaC          #"
 "########################"
