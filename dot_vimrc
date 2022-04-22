@@ -95,6 +95,8 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 " terraform
 Plug 'hashivim/vim-terraform'
+" REST API
+Plug 'diepm/vim-rest-console'
 call plug#end()
 
 
