@@ -93,6 +93,7 @@ Plug 'mattn/vim-lsp-icons'
 Plug 'mattn/vim-goimports'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'zah/nim.vim'
 " terraform
 Plug 'hashivim/vim-terraform'
 " REST API
