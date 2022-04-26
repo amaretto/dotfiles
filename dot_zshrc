@@ -140,3 +140,23 @@ alias gc='git commit'
 ##### top #####
 alias mem='top -o rsize'
 alias cpu='top -o cpu'
+
+########## functions ##########
+##### aws #####
+function getins() {
+
+  help() {
+    cat <<EOS >&2
+Usage:
+    $0 [target tag]
+EOS
+    return
+  }
+
+  if [ $# != 1 ]; then
+    help
+  fi
+
+  aws ec2 describe-instances --output=table --filter "Name=tag-key,Values=Name" "Name=tag-value, Values=$1" --query "sort_by(Reservations[].Instances[].{id:InstanceId,name:Tags[?Key=='Name'].Value|[0],launch:LaunchTime, ip:NetworkInterfaces[0].PrivateIpAddress},&launch)"
+}
+
