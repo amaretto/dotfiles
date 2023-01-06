@@ -71,6 +71,8 @@ Plug 'dense-analysis/ale'
 Plug 'thinca/vim-quickrun'
 Plug 'SirVer/ultisnips'
 Plug 'lambdalisue/nerdfont.vim'
+" javascript
+Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 " rust
 Plug 'rust-lang/rust.vim'
 " filer
@@ -93,11 +95,12 @@ Plug 'mattn/vim-lsp-icons'
 Plug 'mattn/vim-goimports'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
-Plug 'zah/nim.vim'
 " terraform
 Plug 'hashivim/vim-terraform'
 " REST API
 Plug 'diepm/vim-rest-console'
+" sql
+Plug 'mattn/vim-sqlfmt'
 call plug#end()
 
 
@@ -184,13 +187,32 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", "my_snippets"]
 
 
 " ### ale ###
+let g:ale_sign_error = 'P>'
+let g:ale_sign_warning = 'P-'
+let g:ale_echo_msg_format = '[%linter%] %code: %%s'
+let g:ale_statusline_format = ['E%d', 'W%d', 'OK']
+
+nmap <silent> <C-w>j <Plug>(ale_next_wrap)
+nmap <silent> <C-w>k <Plug>(ale_previous_wrap)
+
 let g:ale_fix_on_save = 1
 let g:ale_linters = {
     \ 'python': ['flake8'],
     \ }
 let g:ale_fixers = {
     \ 'python': ['autopep8', 'black', 'isort'],
+    \ 'typescript': ['prettier'],
+    \ 'typescriptreact': ['prettier'],
+    \ 'javascript': ['prettier'],
+    \ 'javascriptreact': ['prettier'],
+    \ 'css': ['prettier'],
     \ }
+
+" javascript format
+let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_javascript_prettier_options = '--single-quote --trailing-comma all'
+
+
 
 "### golang ###
 " formatting golang source
@@ -242,9 +264,6 @@ let g:rustfmt_autosave = 1
 "      \ })
 "endif
 
-"### Groovy ###
-autocmd FileType groovy   setlocal sw=4 sts=4 ts=4 et
-
 "########################"
 "#         IaC          #"
 "########################"
@@ -252,3 +271,10 @@ autocmd FileType groovy   setlocal sw=4 sts=4 ts=4 et
 let g:terraform_align=1
 let g:terraform_fmt_on_save=1
 au BufNewFile,BufRead Jenkinsfile setf groovy
+
+
+"########################"
+"#         SQL          #"
+"########################"
+"--- vim-sqlfmt ---" 
+let g:sqlfmt_program = "sqlformat --comma_first true -r -k upper -o %s -"

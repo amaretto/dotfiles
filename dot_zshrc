@@ -5,7 +5,6 @@ case ${OSTYPE} in
         
         # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
         [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-        
         # prezto
         if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
           source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -113,9 +112,6 @@ export PATH=/usr/local/opt/python@3.9/libexec/bin:$PATH
 # Add for nim
 export PATH=/Users/amaretto/.nimble/bin:$PATH
 
-# Add for groovy
-export GROOVY_HOME=/opt/homebrew/opt/groovy/libexec
-
 
 ########## kubernetes ##########
 # kubectl
@@ -141,22 +137,14 @@ alias gc='git commit'
 alias mem='top -o rsize'
 alias cpu='top -o cpu'
 
-########## functions ##########
-##### aws #####
-function getins() {
 
-  help() {
-    cat <<EOS >&2
-Usage:
-    $0 [target tag]
-EOS
-    return
-  }
-
-  if [ $# != 1 ]; then
-    help
-  fi
-
-  aws ec2 describe-instances --output=table --filter "Name=tag-key,Values=Name" "Name=tag-value, Values=$1" --query "sort_by(Reservations[].Instances[].{id:InstanceId,name:Tags[?Key=='Name'].Value|[0],launch:LaunchTime, ip:NetworkInterfaces[0].PrivateIpAddress},&launch)"
+##### switch github #####
+function gitmain() {
+  git config --global user.name amaretto
+  git config --global user.email jabberwock26@gmail.com
 }
 
+function gitsub() {
+  git config --global user.name substance626
+  git config --global user.email kuronozard@hotmail.com
+}
